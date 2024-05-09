@@ -1,0 +1,51 @@
+\documentclass[draft]{book}
+
+\providecommand{\bookname}{Stammesliederbuch 2}
+
+\input{Misc/basic}
+
+\newindex{Seitenzahlen}{Ausgaben/StaLiBu2}
+\indexsongsas{Seitenzahlen}{\thepage}
+
+\begin{document}
+
+
+\begin{songs}{Seitenzahlen}
+\showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
+
+\setthumb{A}{1}
+\input{Lieder/WenndieBuergerschlafengehn}
+
+\input{Lieder/Leinenlos}
+
+\beginsong{}
+\nothumb
+\markboth{Platz für eigene Lieder}{Platz für eigene Lieder}
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\clearpage
+\endsong
+
+\begin{intersong}
+    \markboth{}{}
+    % \songchapter{Appendix}
+\end{intersong}
+
+\input{Misc/GrifftabelleUkuleleGCEA}
+\input{Misc/GrifftabelleUkuleleADFisH}
+\input{Misc/GrifftabelleUkuleleDGHE}
+\input{Misc/GrifftabelleGitarre}
+\beginsong{}
+\clearpage
+\endsong
+
+\end{songs}
+
+\end{document}
