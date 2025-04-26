@@ -100,6 +100,7 @@ function cleantitle(s)
                         :gsub("\\%a+%s*","")
                         :gsub("{%s*","")
                         :gsub("}","")
+                        :gsub("Ü","U")
     s["clean"] = unicode.utf8.upper(t)
   end
   return s["clean"]
