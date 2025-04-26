@@ -203,7 +203,7 @@ function setstartchars(songs)
   end
 end
 
-wt_prefix = { A=true, THE=true }
+wt_prefix = { A=true, THE=true, DER=true, DIE=true, DAS=true }
 wt_and = { AND=true }
 wt_by = { BY=true }
 wt_unknown = { UNKNOWN=true }
@@ -215,7 +215,7 @@ wt_unknown = { UNKNOWN=true }
 --   Words in wt_prefix are matched case-insensitively, and the new first word
 --   becomes capitalized.  If <title> begins with the marker character '*',
 --   that character is ignored and left unchanged.
-function rotate(s)
+function addSongs(s, songs, snum, link)
   local t = unicode.utf8.upper(s)
   local n = 0
   if s:sub(1,1) == "*" then n = 1 end
@@ -224,10 +224,13 @@ function rotate(s)
        unicode.utf8.find(t, "^%s+%S", n+#pre+1) then
       local len = unicode.utf8.len(pre)
       local x, y, z = unicode.utf8.match(unicode.utf8.sub(s,n+len+1),"^%s+(%W*)(%w?)(.*)$")
-      return s:sub(1,n) .. x .. unicode.utf8.upper(y) .. z:gsub("\\%s","%0\1"):match("^(.-)%s*$"):gsub("\1","") .. ",~" .. unicode.utf8.sub(s,1+n,n+len)
+      alt_title = s:sub(1,n) .. x .. unicode.utf8.upper(y) .. z:gsub("\\%s","%0\1"):match("^(.-)%s*$"):gsub("\1","")
+      if not alt_title:find("^%*") then
+        table.insert(songs, {title=alt_title, num=snum, linkname=link, idx=#songs})
+      end
     end
   end
-  return s
+  table.insert(songs, {title=s, num=snum, linkname=link, idx=#songs})
 end
 
 -- matchany(<string>,<init>,<wordtable>)
@@ -430,8 +433,7 @@ function genindex(fs,outname,authorindex)
           table.insert(songs, {title=a, num=snum, linkname=link, idx=#songs})
         end
       else
-        buf = rotate(unicode.utf8.gsub(unicode.utf8.gsub(buf,"([^%s\\])%s+$","%1"),"^(%*?)%s+","%1"))
-        table.insert(songs, {title=buf, num=snum, linkname=link, idx=#songs})
+        addSongs(unicode.utf8.gsub(unicode.utf8.gsub(buf,"([^%s\\])%s+$","%1"),"^(%*?)%s+","%1"), songs, snum, link)
       end
     end
   end
