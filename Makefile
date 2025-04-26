@@ -48,14 +48,14 @@ Noten: $(patsubst ABC_Noten/%.mcm,Noten/%.pdf,$(wildcard ABC_Noten/*.mcm))
 # Generic targets for all books
 AUSGABE_DEPS = Ausgaben/%.tex $(wildcard Ausgaben/%/*.tex) Noten
 
-Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
-	$(PDFLATEX)  -jobname=$(basename $@) $(basename $@).tex
-Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
-	PRINT=1 $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
+# Ausgaben/%.pdf: 		$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
+# 	$(PDFLATEX)  -jobname=$(basename $@) $(basename $@).tex
+# Ausgaben/%-print.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
+# 	PRINT=1 $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
 Ausgaben/%-pics.pdf: 	$(AUSGABE_DEPS) $(GENERIC_DEPS) Ausgaben/%.sbx
 	PICS=1 $(PDFLATEX) -jobname=$(basename $@) $(basename $<).tex
-Ausgaben/%.html:		Ausgaben/%.pdf
-	pdf2htmlEX --bg-format=svg $(basename $@).pdf $@
+# Ausgaben/%.html:		Ausgaben/%.pdf
+# 	pdf2htmlEX --bg-format=svg $(basename $@).pdf $@
 
 # create a temporary sxd
 Ausgaben/%.sxd.tmp: 	$(AUSGABE_DEPS) $(GENERIC_DEPS)
@@ -73,15 +73,15 @@ Ausgaben/%.sbx: 		Ausgaben/%.sxd
 	$(SONGIDX) $< $@ 2>&1 | tee $@.log
 
 # Special case: Pfadiralala IVplus with combined Index
-LEGACY_IDX = ~~~{\\textit{&}}
-Ausgaben/PfadiralalaIVplus.sbx: 		Ausgaben/PfadiralalaIV.sxd Ausgaben/PfadiralalaIVplus.sxd
-	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd; } | \
-	$(SONGIDX) - $@ 2>&1 | tee $@.log
-Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/PfadiralalaIVplus.sxd.tmp
-	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd.tmp ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd.tmp; } | \
-	$(SONGIDX) - $@ 2>&1 | tee $@.log
-
-# Special case: Generated Songbook with all Songs
-Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
-Ausgaben/CompleteSortedEdition.tex: Tools/generate_sorted_songbook.py Lieder/*.tex
-	python ./Tools/generate_sorted_songbook.py --by index --by txt --by mel --by titel Lieder/*.tex > $@
+# LEGACY_IDX = ~~~{\\textit{&}}
+# Ausgaben/PfadiralalaIVplus.sbx: 		Ausgaben/PfadiralalaIV.sxd Ausgaben/PfadiralalaIVplus.sxd
+# 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd; } | \
+# 	$(SONGIDX) - $@ 2>&1 | tee $@.log
+# Ausgaben/PfadiralalaIVplus.sbx.tmp: 	Ausgaben/PfadiralalaIV.sxd.tmp Ausgaben/PfadiralalaIVplus.sxd.tmp
+# 	{ $(SED) '4~3s/.*//g; 2~3s/[^*].*$$/$(LEGACY_IDX)/g' Ausgaben/PfadiralalaIV.sxd.tmp ; tail -n+2 Ausgaben/PfadiralalaIVplus.sxd.tmp; } | \
+# 	$(SONGIDX) - $@ 2>&1 | tee $@.log
+#
+# # Special case: Generated Songbook with all Songs
+# Ausgaben/CompleteEdition.tex: ./Tools/generate_songbook.sh
+# Ausgaben/CompleteSortedEdition.tex: Tools/generate_sorted_songbook.py Lieder/*.tex
+# 	python ./Tools/generate_sorted_songbook.py --by index --by txt --by mel --by titel Lieder/*.tex > $@
