@@ -466,7 +466,7 @@ function genindex(fs,outname,authorindex)
         if not f:write("\\begin{idxblock}{",songs[i]["newblk"]) then return errorout(f) end
       end
       if songs[i]["title"]:find("^%*") then
-        if not f:write("}\n\\idxaltentry{",songs[i]["title"]:sub(2)) then return errorout(f) end
+        if not f:write("}\n\\idxaltentry{\\hspace{1mm}\\textcolor[HTML]{57585B}{\\textit{",songs[i]["title"]:sub(2),"}}") then return errorout(f) end
       else
         if not f:write("}\n\\idxentry{",songs[i]["title"]) then return errorout(f) end
       end
