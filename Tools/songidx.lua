@@ -112,6 +112,7 @@ function cleantitle(s)
                         :gsub("7","S")
                         :gsub("8","A")
                         :gsub("9","N")
+                        :gsub("Grifftabelle",".")
     s["clean"] = unicode.utf8.upper(t)
   end
   return s["clean"]
