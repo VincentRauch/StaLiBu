@@ -12,6 +12,9 @@
 \begin{document}
 
 \begin{songs}{Seitenzahlen}
+    \input{Misc/Titelbild}
+    \newpage
+
     \input{Misc/Impressum}
     \newpage
 
@@ -19,6 +22,16 @@
     \newpage
 
 \showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
+
+    \nothumb
+
+\begin{intersong} % don't use intersong here - saves one page for consistency with 1st edition
+    \songchapter{Traditionelles}
+    \vspace{40pt}
+    \center
+    \includegraphics[width=0.7\textwidth]{Bilder/HeikoSchmelz_Halstuch.png}
+    \newpage
+\end{intersong}
 
 \setthumb{A}{1}
 \input{Lieder/AlleDieMitUns}
