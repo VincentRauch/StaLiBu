@@ -1,5 +1,6 @@
 \documentclass[draft]{book}
 \usepackage{xcolor}
+\usepackage{import}
 
 \providecommand{\bookname}{Stammesliederbuch 2}
 
@@ -11,22 +12,12 @@
 \begin{document}
 
 \begin{songs}{Seitenzahlen}
+    \input{Misc/Impressum}
     \newpage
-    \thispagestyle{empty} % Optional: remove page number
-    \begin{center}
-    {\Huge \textbf{Einleitung}} % Or any other title
 
-
-        \vspace{2cm}
-        Hier ist es, das Stammesliederbuch 2.0!
-        Bedient habe ich mich bei der Erstellung des Buches bei
-
-
-        \vfill
-        Vincent
-
-    \end{center}
+    \input{Misc/Vorwort}
     \newpage
+
 \showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
 
 \setthumb{A}{1}
