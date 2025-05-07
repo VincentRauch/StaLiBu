@@ -11,12 +11,17 @@
 
 \begin{document}
 
-\begin{songs}{Seitenzahlen}
-
-    \input{Misc/Impressum}
+    % Insert a blank page before the Impressum to shift numbering
+    \thispagestyle{empty}
+    \null
     \newpage
 
+\begin{songs}{Seitenzahlen}
+
     \input{Misc/Vorwort}
+    \newpage
+
+    \input{Misc/Impressum}
     \newpage
 
 \showindex[2]{Inhaltsverzeichnis}{Seitenzahlen}
@@ -24,6 +29,7 @@
     \nothumb
 
     \begin{intersong} % don't use intersong here - saves one page for consistency with 1st edition
+        \newpage
         \songchapter{Pfadfinder}
         \vspace{40pt}
         \center
@@ -162,6 +168,7 @@
 \input{Lieder/YeJacobites}
 
     \begin{intersong}
+        \newpage
         \markboth{}{}
         \songchapter{Die Ärzte}
         \vspace{100pt}
@@ -169,8 +176,6 @@
         \includegraphics[width=1\textwidth]{Bilder/Aerzte.jpg}
         \newpage
     \end{intersong}
-
-    \clearpage
 
 \setthumb{\#}{0}
 \input{Lieder/Ae-1-2Lovesong}
@@ -214,6 +219,7 @@
 \input{Lieder/Ae-ZuSpaet}
 
     \begin{intersong}
+        \newpage
         \markboth{}{}
         \songchapter{Deutsches}
         \vspace{100pt}
@@ -221,8 +227,6 @@
         \includegraphics[width=1\textwidth]{Bilder/IrenaRuppert_Gitarre.jpg}
         \newpage
     \end{intersong}
-
-    \clearpage
 
 \setthumb{A}{1}
 \input{Lieder/AmEndeDenkIchImmerNur}
@@ -260,6 +264,7 @@
 \input{Lieder/UeberdenWolken}
 
     \begin{intersong}
+        \newpage
         \markboth{}{}
         \songchapter{Englisches}
         \vspace{100pt}
@@ -267,8 +272,6 @@
         \includegraphics[width=1\textwidth]{Bilder/MikeschTuerck_Weltlager.jpg}
         \newpage
     \end{intersong}
-
-    \clearpage
 
 \setthumb{A}{1}
 \input{Lieder/Africa}
