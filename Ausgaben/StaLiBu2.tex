@@ -168,12 +168,15 @@
 \setthumb{Y}{25}
 \input{Lieder/YeJacobites}
 
-    % This is used to leave the header of the last song (Ye Jacobites) intact, while deleting it
-    % from the double page with picture. Has to be changed manually!
-    \markboth{}{Ye Jacobites}
+    \markboth{Ye Jacobites}{Ye Jacobites}
+
+    \newpage
 
     \begin{intersong}
+        \markboth{Zu den Liedern}{}
         \input{Misc/Scripture}
+        \clearpage
+        \markboth{}{}
     \end{intersong}
 
     \begin{intersong}
@@ -276,9 +279,13 @@
 \setthumb{U}{21}
 \input{Lieder/UeberdenWolken}
 
-    % This is used to leave the header of the last song (Ye Jacobites) intact, while deleting it
-    % from the double page with picture. Has to be changed manually!
-    \markboth{}{Über den Wolken}
+    \newpage
+
+    \begin{intersong}
+        \markboth{Über den Wolken}{}
+        \clearpage
+        \markboth{}{}
+    \end{intersong}
 
     \begin{intersong}
         \newpage
